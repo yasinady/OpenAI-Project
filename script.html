@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="script.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,300;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>https://chat.openai.com/chat</title>
+  </head>
+  <body>
+    <div class="contant">
+      <div class="container">
+        <div class="top">
+          <button type="button" class="menu-btn">
+            <img src="/svg/menu.svg" alt="" />
+          </button>
+          <h1 class="text">New Chat</h1>
+          <button type="button" class="add-btn">
+            <img src="/svg/add.svg" alt="" />
+          </button>
+        </div>
+        <main>
+          <div class="main">
+            <div class="scroll">
+              <div class="scroll-style">
+                <div class="header">
+                  <div class="empty" id="empty">Fields cannot be empty!</div>
+                  <div class="danger" id="danger">
+                    You cannot write less than 5 letters!
+                  </div>
+
+                  <div class="alert" id="alert">
+                    You cannot write greater than 30 letters.!
+                  </div>
+                  <div class="main-header">
+                    <h1 class="h1">ChatGPT</h1>
+                    <div class="cols">
+                      <div class="col">
+                        <img src="/svg/sun.svg " alt="" />
+                        <h2>Examples</h2>
+                        <ul class="links">
+                          <button class="link">
+                            "Explain quantum computing in simple terms" →
+                          </button>
+                          <button class="link">
+                            Got any creative ideas for a 10 year old’s birthday?
+                            →
+                          </button>
+                          <button class="link">
+                            How do I make an HTTP request in Javascript? →
+                          </button>
+                        </ul>
+                      </div>
+                      <div class="col">
+                        <img src="/svg/elekct.svg " alt="" />
+                        <h2>Capabilities</h2>
+                        <ul class="links">
+                          <button class="link">
+                            Remembers what user said earlier in the conversation
+                          </button>
+                          <button class="link">
+                            Allows user to provide follow-up corrections
+                          </button>
+                          <button class="link">
+                            Trained to decline inappropriate requests
+                          </button>
+                        </ul>
+                      </div>
+                      <div class="col">
+                        <img src="/svg/danger.svg " alt="" />
+                        <h2>Limitations</h2>
+                        <ul class="links">
+                          <button class="link">
+                            May occasionally generate incorrect information
+                          </button>
+                          <button class="link">
+                            May occasionally produce harmful instructions or
+                            biased content
+                          </button>
+                          <button class="link">
+                            Limited knowledge of world and events after 2021
+                          </button>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="empty-container"></div>
+                </div>
+                <button class="scroll-btn">
+                  <img class="down" src="/svg/down.svg" alt="" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="searchbar">
+            <form action="" class="form" id="form">
+              <div class="form-input">
+                <div class="form-empty"></div>
+
+                <div class="area">
+                  <!-- <textarea
+                    id="message"
+                    tabindex="0"
+                    rows="1"
+                    onchange="{e.target.value}"
+                    placeholder
+                    style="max-height: 200px; height: 50px; overflow-y: hidden"
+                  >
+                  </textarea> -->
+                  <form
+                    method="post"
+                    name="Form"
+                    onsubmit="return sendd()"
+                    action=""
+                  >
+                    <textarea
+                      cols="30"
+                      rows="2"
+                      name="answer_a"
+                      id="a"
+                    ></textarea>
+                    <button
+                    class="send"
+                    type="submit"
+                    id="send"
+                    onclick="sendd()"
+                  >
+                  </form>
+
+                    <img src="./svg/send.svg" alt="" />
+                  </button>
+                  <p id="error"></p>
+                </div>
+              </div>
+            </form>
+            <div class="footer">
+              <a
+                href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+                target="_blank"
+                rel="noreferrer"
+                class="underline"
+                >ChatGPT Dec 15 version</a
+              >
+              .Free Research Preview. Our goal is to make AI systems more
+              natural and safe to interact with. Your feedback will help us
+              improve.
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="contain">
+        <div class="container">
+          <div class="bar">
+            <nav class="sidebar">
+              <a href="#" class="add">
+                <img src="/svg/add.svg" alt="" />
+                <span>New Chat</span>
+              </a>
+              <div class="empty-area">
+                <div class="area"></div>
+              </div>
+              <a href="" id="mode" class="link">
+                <img src="/svg/sun.svg" />
+                <span>Light Mode</span>
+              </a>
+              <a href="https://discord.gg/openai" class="link">
+                <img src="/svg/discord.svg" alt="" />
+                <span>OpenAi Discord</span>
+              </a>
+              <a
+                href="https://help.openai.com/en/collections/3742473-chatgpt"
+                class="link"
+              >
+                <img src="/svg/update.svg" alt="" />
+                <span>Updates & FAQ</span>
+              </a>
+              <a href="" class="link">
+                <img src="/svg/logout.svg" alt="" />
+                <span>Log out</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function sendd() {
+        const a = document.forms["Form"]["answer_a"].value;
+        if (a == null || a == "") {
+          alert("Please Fill All Required Field");
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
